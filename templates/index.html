@@ -1,0 +1,19 @@
+<br><br>
+<center><h1>Color classification project - ML implementation</h1></center>
+<center><b>SUML gr5 - POC</b></center>
+<hr>
+<br>
+Welcome to our project. You can interact with it in one of two ways:<br>
+ - You can try out our model and see how it does:<br>
+        -> you will be presented with a page where you can put R, G and B values<br>
+        -> our model will perform classification and return you one of the colors, which is closest to given by you.<br>
+<form method="get" action="{{url_for('classification')}}">
+    <input type="submit" value="Try our classification model!">
+</form>
+<br><br>
+ - You can also help to relearn our model:<br>
+        -> you will be presented with a page and a rectangle of a random color<br>
+        -> you will need to choose between predefined colors, which one of them describes the color displayed the best<br>
+<form method="get" action="{{url_for('relearning')}}">
+    <input type="submit" value="Help to relearn our model!">
+</form>

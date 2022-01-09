@@ -1,0 +1,15 @@
+<br><br>
+<center><h1>Classifying RGB valuse</h1></center>
+<hr>
+<center><h3>Put RGB vales and press 'SUBMIT' to see efect of classification by our model</h3></center>
+<form method="post" action="{{url_for('classification')}}">
+    {{form_classification.csrf_token}}
+    {{form_classification.r_value.label}}{{form_classification.r_value}}
+    {{form_classification.g_value.label}}{{form_classification.g_value}}
+    {{form_classification.b_value.label}}{{form_classification.b_value}}
+    
+    <input type="submit" value="SUBMIT">
+</form>
+<form method="get" action="{{url_for('index')}}">
+    <input type="submit" value="Return to main page">
+</form>

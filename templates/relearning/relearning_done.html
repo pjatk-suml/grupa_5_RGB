@@ -1,0 +1,16 @@
+<br><br>
+<center><h1>Model relearning</h1></center>
+<hr>
+<center><h3>Thanks for submitting</h3></center>
+You classified color od RGB = ({{r}},{{g}},{{b}})<br>
+<svg width="100%" height="300">
+    <rect width="80%" height="300" style="fill:rgb({{r}},{{g}},{{b}});" />
+</svg>
+as {{choice}}<br><br>
+
+<form method="get" action="{{url_for('relearning')}}">
+    <input type="submit" value="Help us relearn our model once again">
+</form>
+<form method="get" action="{{url_for('index')}}">
+    <input type="submit" value="Return to main page">
+</form>
