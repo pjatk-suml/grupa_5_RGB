@@ -56,17 +56,26 @@ class RelearnForm(FlaskForm):
         ('Red','Red'),
         ('Violet','Violet'),
         ('Yellow','Yellow')])
-        
-    r_value = IntegerField('R')
-    g_value = IntegerField('G')
-    b_value = IntegerField('B')
+  
+    r_value = IntegerField('Red')
+    g_value = IntegerField('Green')
+    b_value = IntegerField('Blue')
 
 @app.route('/relearning/', methods=['POST', 'GET'])
 def relearning():
+    form_relearn = RelearnForm()
+    if request.method == 'GET': 
+        seed(time.time()*1000)
+        r = randint(0, 255)
+        g = randint(0, 255)
+        b = randint(0, 255)
+        form_relearn.r_value.data = r
+        form_relearn.g_value.data = g
+        form_relearn.b_value.data = b
+
+        return render_template('relearning/relearning.html', r = r, g = g, b = b, form_relearn = form_relearn)
 
     if request.method == 'POST':         
-        form_relearn = RelearnForm()
-
         if form_relearn.validate_on_submit():
             choice = form_relearn.choice.data
             r = form_relearn.r_value.data
@@ -76,12 +85,7 @@ def relearning():
         return render_template('relearning/relearning_done.html', choice = choice, r= r, g = g, b = b)
 
     
-    seed(time.time()*1000)
-    r = randint(0, 255)
-    g = randint(0, 255)
-    b = randint(0, 255)
 
-    return render_template('relearning/relearning.html', r = r, g = g, b = b, form_relearn = RelearnForm())
 
 
 

@@ -3,11 +3,9 @@
 <hr>
 <center><h3>Underneath you see a rectangle od random color</h3></center>
 <svg width="100%" height="300">
-    <rect width="80%" height="300" style="fill:rgb({{r}},{{g}},{{b}});" />
+    <rect width="300" height="300" style="fill:rgb({{r}},{{g}},{{b}});" />
 </svg>
 <center><h3>Please choose a color that best describes it</h3></center>
-TODO -> pass rgb values to POST automatically: <br>
-R -> {{r}}, G -> {{g}}, B ->{{b}}
 <form method="post" action="{{url_for('relearning')}}">
     {{form_relearn.csrf_token}}
     {{form_relearn.choice}}
