@@ -46,8 +46,17 @@ def classification():
 
 class RelearnForm(FlaskForm):
 
-    choice = SelectField(choices=[('Black','Black'), ('Blue','Blue'), ('Brown', 'Brown'), ('Gray', 'Gray'), ('Green', 'Green'), ('Orange', 'Orange'), ('Red', 'Red'), ('Violet', 'Violet'), ('White', 'White'), ('Yellow', 'Yellow')])
-
+    choice = SelectField(choices=[
+        ('Beige','Beige'),
+        ('Blue','Blue'),
+        ('Brown','Brown'),
+        ('Green','Green'),
+        ('Grey','Grey'),
+        ('Orange','Orange'),
+        ('Red','Red'),
+        ('Violet','Violet'),
+        ('Yellow','Yellow')])
+  
     r_value = IntegerField('Red')
     g_value = IntegerField('Green')
     b_value = IntegerField('Blue')
