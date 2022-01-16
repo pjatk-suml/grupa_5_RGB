@@ -1,15 +1,27 @@
-<br><br>
-<center><h1>Classifying RGB valuse</h1></center>
-<hr>
-<center><h3>Put RGB vales and press 'SUBMIT' to see efect of classification by our model</h3></center>
-<form method="post" action="{{url_for('classification')}}">
-    {{form_classification.csrf_token}}
-    {{form_classification.r_value.label}}{{form_classification.r_value}}
-    {{form_classification.g_value.label}}{{form_classification.g_value}}
-    {{form_classification.b_value.label}}{{form_classification.b_value}}
-    
-    <input type="submit" value="SUBMIT">
-</form>
-<form method="get" action="{{url_for('index')}}">
-    <input type="submit" value="Return to main page">
-</form>
+<link rel="stylesheet" href="/static/style.css">
+
+<head>
+    <h1 id="main-head">Classifying RGB valuse</h1>
+</head>
+<body id="main-body">
+    <div class="info-panel">
+        <h3>Set RGB values ​​and press 'SUBMIT' to see the effect of classification by our model.</h3>
+        <form  method="post" action="{{url_for('classification')}}">
+            <div id="rgb-input">
+                {{form_classification.csrf_token}}
+                <br>{{form_classification.r_value.label}}{{form_classification.r_value}}
+                <br>
+                <br>{{form_classification.g_value.label}}{{form_classification.g_value}}
+                <br>
+                <br>{{form_classification.b_value.label}}{{form_classification.b_value}}
+                <br>
+                <br><input id="buttons" type="submit" value="SUBMIT">
+            </div>
+        </form>
+        <form method="get" action="{{url_for('index')}}">
+            <input id="buttons" type="submit" value="Return to main page">
+        </form>
+    </div>
+</body>
+
+

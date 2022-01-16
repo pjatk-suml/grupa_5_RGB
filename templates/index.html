@@ -1,19 +1,36 @@
-<br><br>
-<center><h1>Color classification project - ML implementation</h1></center>
-<center><b>SUML gr5 - POC</b></center>
-<hr>
-<br>
-Welcome to our project. You can interact with it in one of two ways:<br>
- - You can try out our model and see how it does:<br>
-        -> you will be presented with a page where you can put R, G and B values<br>
-        -> our model will perform classification and return you one of the colors, which is closest to given by you.<br>
-<form method="get" action="{{url_for('classification')}}">
-    <input type="submit" value="Try our classification model!">
-</form>
-<br><br>
- - You can also help to relearn our model:<br>
-        -> you will be presented with a page and a rectangle of a random color<br>
-        -> you will need to choose between predefined colors, which one of them describes the color displayed the best<br>
-<form method="get" action="{{url_for('relearning')}}">
-    <input type="submit" value="Help to relearn our model!">
-</form>
+<link rel="stylesheet" href="/static/style.css">
+<head>
+    <div>
+        <h1 id="main-head">Color Classification Project - ML Implementation</h1>
+        <b id="main-head">SUML gr5 - POC</b>
+        <p id="main-head">Welcome to our project! You can interact with it in one of two ways:</p>
+    </div>
+</head>
+
+<body id="main-body">
+    <div class="info-panel">
+        <p>You can try our model and see how it works:</p>
+        <p>> A page will be displayed where you can put the 
+            <span id="R-letter"> R </span>,
+            <span id="G-letter"> G </span> and 
+            <span id="B-letter"> B </span> values</p>
+        <p>> Our model will classify and return one of the colors closest to the color given by you.</p>
+        <form method="get" action="{{url_for('classification')}}">
+            <input id="buttons" type="submit" value="Try Model!" />
+        </form>
+    </div>
+    <p></p>
+    <div class="info-panel">
+        <p>You can also help re-learn our model: </p>
+        <p>> A randomly colored page and a rectangle will appear</p>
+        <p>> You have to choose from the predefined colors which one best describes the displayed color</p>
+        <form method="get" action="{{url_for('relearning')}}">
+            <input id="buttons" type="submit" value="Relearn Model!" />
+        </form>
+    </div>
+</body>
+
+
+
+
+
