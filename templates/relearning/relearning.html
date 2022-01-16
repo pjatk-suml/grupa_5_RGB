@@ -12,9 +12,9 @@
     </div>
     <h3>Please choose a color that best describes it</h3>
     <form method="post" action="{{url_for('relearning')}}">
-      <div id="rgb-input">
-        {{form_relearn.csrf_token}}
-        <br />{{form_relearn.choice}}
+      {{form_relearn.csrf_token}}
+      <br />{{form_relearn.choice}}
+      <div id="rgb-input" hidden>
         <br />
         <br />{{form_relearn.r_value.label}}{{form_relearn.r_value}}
         <br />
@@ -22,10 +22,10 @@
         <br />
         <br />{{form_relearn.b_value.label}}{{form_relearn.b_value}}
       </div>
-      <input id="buttons" type="submit" value="Relearn model" />
+      <input id="buttons" type="submit" value="Relearn Model" />
     </form>
     <form method="get" action="{{url_for('index')}}">
-      <input id="buttons" type="submit" value="Return to main page" />
+      <input id="buttons" type="submit" value="Go to Main Page" />
     </form>
   </div>
 </body>
