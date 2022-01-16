@@ -8,13 +8,15 @@
         <h3>Set RGB values ​​and press 'SUBMIT' to see the effect of classification by our model.</h3>
         <form  method="post" action="{{url_for('classification')}}">
             <div id="rgb-input">
-                {{form_classification.csrf_token}}
+                <!-- {{form_classification.csrf_token}}
                 <br>{{form_classification.r_value.label}}{{form_classification.r_value}}
                 <br>
                 <br>{{form_classification.g_value.label}}{{form_classification.g_value}}
                 <br>
                 <br>{{form_classification.b_value.label}}{{form_classification.b_value}}
-                <br>
+                <br> -->
+                <label for="color">Select your favorite color:</label>
+                <input type="color" id="rgb" name="color" value="#ff0000"> 
                 <br><input id="buttons" type="submit" value="SUBMIT">
             </div>
         </form>

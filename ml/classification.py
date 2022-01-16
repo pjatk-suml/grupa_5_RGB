@@ -4,7 +4,7 @@ import pandas as pd
 
 def classify (r, g, b):
     #print('classification in process....')
-
+    
     df = pd.read_csv('ml/data/colors.csv')
 
     X = df.loc[:,['R','G','B']].values.reshape(-1,3)

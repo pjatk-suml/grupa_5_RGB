@@ -26,17 +26,25 @@ class ClassificationForm(FlaskForm):
 
 @app.route('/classification/', methods=['POST', 'GET'])
 def classification():
-
+    
     if request.method == 'POST':
 
-        classification_form = ClassificationForm()
-        if classification_form.validate_on_submit():
+        color_hex = request.form.get('color')
+        # TODO: Parse hex to r,g,b:
+        color_hex = [1,2,3]
+        r_value = color_hex[0]
+        g_value = color_hex[1]
+        b_value = color_hex[2]
+        
+        # classification_form = ClassificationForm()
+        # if classification_form.validate_on_submit():
+            # r_value = classification_form.r_value.data
+            # g_value = classification_form.g_value.data
+            # b_value = classification_form.b_value.data
 
-            r_value = classification_form.r_value.data
-            g_value = classification_form.g_value.data
-            b_value = classification_form.b_value.data
-            result = classify(r_value, g_value, b_value)
-            return render_template('classification/classification_done.html', r=r_value, g = g_value, b = b_value, result = result)
+        result = classify(r_value, g_value, b_value)
+        # result = classify(color_hex)
+        return render_template('classification/classification_done.html', r=r_value, g = g_value, b = b_value, result = result)
     
 
     return render_template('classification/classification.html', form_classification = ClassificationForm())
