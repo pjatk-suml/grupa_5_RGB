@@ -7,4 +7,5 @@ pip install wtforms
 pip install sklearn
 pip install pandas
 pip install numpy
+pip install Pillow
 python app.py
