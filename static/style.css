@@ -75,3 +75,8 @@
  border: 3px solid black;
 
 }
+
+input[type="color"] {
+	width: 64px;
+	height: 64px;
+}
