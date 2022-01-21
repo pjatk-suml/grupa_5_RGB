@@ -1,5 +1,6 @@
 from k_nearest_neighbours import perform_test as KNN_perform_test
 from naive_bayes import perform_test as NB_perform_test
+from support_vector_machine import perform_test as SVM_perform_test
 
 from sklearn.model_selection import train_test_split
 import pandas as pd
@@ -13,6 +14,7 @@ def main():
     y = df['Color'].values
     
     
+
     #testing KNN
     print('\n========= Testing KNN ============\n')
 
@@ -40,6 +42,7 @@ def main():
     print('\n==================================\n\n')
     
 
+
     #testing Naive Bayes
     print('\n========= Testing Naive Bayes ============\n')
 
@@ -56,6 +59,26 @@ def main():
 
     print(f'''\nAverage accuracy = {NB_average_result}''')
     
+
+    print('\n==================================\n\n')
+
+
+
+    #testing Naive Bayes
+    print('\n========= Testing Support Vector Machine ============\n')
+
+    print('Set number of tests - each test is new data set split: [int]')
+    iter= int(input())
+    print(f'''\nTesting specs:\n
+    Number of tests = {iter}\n\n''')
+
+    SVM_average_result, SVM_results = SVM_perform_test(X, y, iter)
+
+    print(f'''List of results (accuracies):\n''')
+    for i, res in enumerate(SVM_results):
+        print(f'Data split {i+1} -> accuracy = {res}')
+
+    print(f'''\nAverage accuracy = {SVM_average_result}''')
 
     print('\n==================================\n\n')
 
