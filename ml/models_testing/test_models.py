@@ -2,6 +2,7 @@ from k_nearest_neighbours import perform_test as KNN_perform_test
 from naive_bayes import perform_test as NB_perform_test
 from support_vector_machine import perform_test as SVM_perform_test
 from logistic_regression import perform_test as LR_perform_test
+from random_forest import perform_test as RF_perform_test
 
 import pandas as pd
 
@@ -99,6 +100,26 @@ def main():
         print(f'Data split {i+1} -> accuracy = {res}')
 
     print(f'''\nAverage accuracy = {LR_average_result}''')
+
+    print('\n==================================\n\n')
+
+
+
+    #testing Random Forest
+    print('\n========= Testing Random Forest ============\n')
+
+    print('Set number of tests - each test is new data set split: [int]')
+    iter= int(input())
+    print(f'''\nTesting specs:\n
+    Number of tests = {iter}\n\n''')
+
+    RF_average_result, RF_results = LR_perform_test(X, y, iter)
+
+    print(f'''List of results (accuracies):\n''')
+    for i, res in enumerate(RF_results):
+        print(f'Data split {i+1} -> accuracy = {res}')
+
+    print(f'''\nAverage accuracy = {RF_average_result}''')
 
     print('\n==================================\n\n')
 
