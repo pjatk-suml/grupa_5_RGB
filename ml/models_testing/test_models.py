@@ -3,6 +3,7 @@ from naive_bayes import perform_test as NB_perform_test
 from support_vector_machine import perform_test as SVM_perform_test
 from logistic_regression import perform_test as LR_perform_test
 from random_forest import perform_test as RF_perform_test
+from neural_network import perform_test as NN_perform_test
 
 
 import pandas as pd
@@ -126,10 +127,12 @@ def main():
 
 
 
-    #testing Random Forest
+    #testing Neural Network
     print('\n========= Testing Neural Network ============\n')
 
+    NN_average_result = NN_perform_test(X, y)
 
+    print(f'''\nAverage accuracy = {NN_average_result}''')
 
     print('\n==================================\n\n')
 
