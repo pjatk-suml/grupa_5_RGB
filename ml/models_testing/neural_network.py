@@ -34,7 +34,7 @@ def train_neural_network(X_train, y_train, X_test, y_test, model):
 
 
 
-def perform_test(X, y):
+def perform_test(X, y, charts):
 
     #input -> 
     #   X - > [[R,G,B], ...] -> list of list of values
@@ -85,14 +85,15 @@ def perform_test(X, y):
     history, model = train_neural_network(X_train, y_train, X_test, y_test, model)
     model.summary()
 
-    #visualisation of learning 
-    plt.plot(history.history['accuracy'], label='train set')
-    plt.plot(history.history['val_accuracy'], label='test set')
-    plt.title('Model accuracy')
-    plt.ylabel('Accuracy')
-    plt.xlabel('Epoch')
-    plt.legend()
-    plt.show()
+    #visualisation of learning
+    if charts: 
+        plt.plot(history.history['accuracy'], label='train set')
+        plt.plot(history.history['val_accuracy'], label='test set')
+        plt.title('Model accuracy')
+        plt.ylabel('Accuracy')
+        plt.xlabel('Epoch')
+        plt.legend()
+        plt.show()
 
 
     #testing myself for accuracy in the whole dataset

@@ -1,0 +1,91 @@
+
+========= 2022/01/22 15:21:27 Testing KNN ============
+
+Testing specs:
+
+    Minimal number of neighbours = 1
+
+    Maximal number of neighbours = 10
+
+    Number of tests per each number of neughbours = 100
+
+2022/01/22 15:21:36 Computing started
+
+Finish time: 2022/01/22 15:21:41
+Time elapsed: 4.502418212890625s
+Best result: 1 neighbours with average accuracy = 0.7340512820512818
+==================================
+
+
+========= 2022/01/22 15:21:41 Testing Naive Bayes ============
+
+Testing specs:
+
+    Number of tests = 100
+
+2022/01/22 15:21:46 Computing started
+
+Finish time: 2022/01/22 15:21:46
+Time elapsed: 0.176301513671875s
+Average accuracy = 0.6062564102564104
+==================================
+
+
+========= 2022/01/22 15:21:46 Testing Support Vector Machine ============
+
+Testing specs:
+
+    Number of tests = 100
+
+2022/01/22 15:21:48 Computing started
+
+Finish time: 2022/01/22 15:21:48
+Time elapsed: 0.5940146484375s
+Average accuracy = 0.6951794871794865
+==================================
+
+
+========= 2022/01/22 15:21:48 Testing Logistic Regression ============
+
+Testing specs:
+
+    Number of tests = 100
+
+2022/01/22 15:21:51 Computing started
+
+Finish time: 2022/01/22 15:21:52
+Time elapsed: 0.411725830078125s
+Average accuracy = 0.5937948717948719
+==================================
+
+
+========= 2022/01/22 15:21:52 Testing Random Forest ============
+
+Testing specs:
+
+    Number of tests = 100
+
+2022/01/22 15:21:54 Computing started
+
+Finish time: 2022/01/22 15:22:05
+Time elapsed: 10.63892138671875s
+Average accuracy = 0.7172307692307691
+==================================
+
+
+========= 2022/01/22 15:22:05 Testing Neural Network ============
+
+Testing specs:
+
+    Show charts = False
+
+2022/01/22 15:22:08 Computing started
+
+Finish time: 2022/01/22 15:22:24
+Time elapsed: 16.710593505859375s
+Average accuracy = 0.8547140649149922
+==================================
+
+
+
+2022/01/22 15:22:24 END OF SESSION
