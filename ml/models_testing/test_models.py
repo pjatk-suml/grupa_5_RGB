@@ -4,6 +4,7 @@ from support_vector_machine import perform_test as SVM_perform_test
 from logistic_regression import perform_test as LR_perform_test
 from random_forest import perform_test as RF_perform_test
 
+
 import pandas as pd
 
 # TO Run this script, run it from 'project_dir/ml/model_testing'
@@ -113,13 +114,22 @@ def main():
     print(f'''\nTesting specs:\n
     Number of tests = {iter}\n\n''')
 
-    RF_average_result, RF_results = LR_perform_test(X, y, iter)
+    RF_average_result, RF_results = RF_perform_test(X, y, iter)
 
     print(f'''List of results (accuracies):\n''')
     for i, res in enumerate(RF_results):
         print(f'Data split {i+1} -> accuracy = {res}')
 
     print(f'''\nAverage accuracy = {RF_average_result}''')
+
+    print('\n==================================\n\n')
+
+
+
+    #testing Random Forest
+    print('\n========= Testing Neural Network ============\n')
+
+
 
     print('\n==================================\n\n')
 
