@@ -2,7 +2,7 @@
 
 import tensorflow as tf
 from keras.models import Sequential 
-from keras.layers import Dense, MaxPooling2D, Flatten
+from keras.layers import Dense
 from sklearn.model_selection import train_test_split
 
 import matplotlib.pyplot as plt
@@ -13,7 +13,11 @@ def compile_neural_network(input_dimentions, number_of_classes):
 
     model = Sequential()
     model.add(Dense(input_dimentions, activation='relu', use_bias = True))
-    model.add(Dense(6, activation='relu', use_bias = True))
+    model.add(Dense(192, activation='relu', use_bias = True))
+    model.add(Dense(96, activation='relu', use_bias = True))
+    model.add(Dense(48, activation='relu', use_bias = True))
+    model.add(Dense(24, activation='relu', use_bias = True))
+    model.add(Dense(12, activation='relu', use_bias = True))
     model.add(Dense(number_of_classes, activation='softmax', use_bias =False))
 
     model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['accuracy'])
@@ -24,8 +28,8 @@ def compile_neural_network(input_dimentions, number_of_classes):
 
 def train_neural_network(X_train, y_train, X_test, y_test, model):
 
-    early_stop = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=5)
-    history = model.fit(X_train, y_train, batch_size=32, epochs = 1000, validation_data=(X_test, y_test), callbacks=[early_stop])
+    early_stop = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=50, restore_best_weights=True)
+    history = model.fit(X_train, y_train, use_multiprocessing=True, workers = 2, epochs = 1000, validation_data=(X_test, y_test), callbacks=[early_stop])
     return history, model
 
 
