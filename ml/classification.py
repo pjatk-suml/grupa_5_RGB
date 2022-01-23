@@ -8,10 +8,10 @@ def classify (r, g, b):
     df = pd.read_csv('ml/data/colors.csv')
 
     X = df.loc[:,['R','G','B']].values.reshape(-1,3)
-    #print (X)
+    print (X)
 
     y = df['Color'].values
-    #print (y)
+    print (y)
 
     classifier = KNeighborsClassifier(n_neighbors=5)
     classifier.fit(X,y)
