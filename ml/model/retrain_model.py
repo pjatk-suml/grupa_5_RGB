@@ -43,7 +43,7 @@ def change_property(property, value):
 
 
 
-def read_current_model(model_filename):
+def read_model(model_filename):
     return tf.keras.models.load_model(model_filename)
 
 
@@ -102,7 +102,7 @@ def retrain_model(X, y):
 
     X_train, X_test, y_train, y_test = split_data(X, y)
 
-    model = read_current_model(current_model)
+    model = read_model(current_model)
 
     history, model = train_neural_network(X_train, y_train, X_test, y_test, model)
 

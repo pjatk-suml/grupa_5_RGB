@@ -32,8 +32,8 @@ def classification():
         color = request.form['color']
         rgb = ImageColor.getcolor(color, "RGB")
         R = rgb[0]
-        B = rgb[1]
-        G = rgb[2]
+        G = rgb[1]
+        B = rgb[2]
 
         result = classify(R, G, B)
         return render_template('classification/classification_done.html', r=R, g=G, b=B, result=result)
