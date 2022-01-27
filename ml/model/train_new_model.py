@@ -32,7 +32,17 @@ def parse_config_properties():
 
 
 def change_property(property, value):
-    pass #TODO
+
+    lines = []
+    with open('ml/configuration.properties', 'r') as f:
+        for line in f:
+            if not property in line:
+                lines.append(line)
+            else:
+                lines.append(f'{property} = {value}\n')
+
+    with open('ml/configuration.properties', 'w') as f:
+        f.writelines(lines)
 
 
 
@@ -126,6 +136,9 @@ def main():
     timestamp = time.strftime(time_format, time.localtime())
     model_filename = f'neural_network{timestamp}.pb'
     model.save(f'ml/model/saved_models/{model_filename}')
+    change_property('name_of_current_model', model_filename)
+
+
 
 if __name__ == '__main__':
     main()
