@@ -49,9 +49,6 @@ def classify (r, g, b):
         7: 'Beige',
         8: 'Yellow'
     }
-    color_to_id_mapping = {}
-    for p in id_to_color_mapping:
-        color_to_id_mapping[id_to_color_mapping[p]] = p
 
     X = np.array([r, g, b])
     X = np.array([X])
