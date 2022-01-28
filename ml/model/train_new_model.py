@@ -8,6 +8,7 @@ import pandas as pd
 import tensorflow as tf
 from keras.models import Sequential 
 from keras.layers import Dense
+import keras.backend.tensorflow_backend as tb
 from sklearn.model_selection import train_test_split
 
 
@@ -101,7 +102,9 @@ def split_data(X, y, test_size=0.3):
 
 
 
-def main():
+def train_new_model(swap_to_new_model = True):
+
+    tb._SYMBOLIC_SCOPE.value = True
 
     config_properties = parse_config_properties()
 
@@ -136,9 +139,13 @@ def main():
     timestamp = time.strftime(time_format, time.localtime())
     model_filename = f'neural_network{timestamp}.pb'
     model.save(f'ml/model/saved_models/{model_filename}')
-    change_property('name_of_current_model', model_filename)
+    
+    if swap_to_new_model:
+        change_property('name_of_current_model', model_filename)
+
+    return model.evaluate(X,y)[1], model_filename
 
 
 
 if __name__ == '__main__':
-    main()
+    train_new_model()
