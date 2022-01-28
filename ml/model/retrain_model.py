@@ -1,10 +1,11 @@
-import numpy as np
-import pandas as pd
-from threading import Thread
+#Additional prerequisites -> Tensorflow 2.2.0 and Keras 2.3.1
+# TO BE RUN FROM MAIN PROJECT DIR
 
-from ml.model.train_new_model import train_new_model
+import time
+import numpy as np
 
 import tensorflow as tf
+from sklearn.model_selection import train_test_split
 
 
 
@@ -43,12 +44,34 @@ def change_property(property, value):
 
 
 def read_model(model_filename):
-    return tf.keras.models.load_model(f'ml/model/saved_models/{model_filename}')
+    return tf.keras.models.load_model(model_filename)
 
 
 
-def import_data():
+def train_neural_network(X_train, y_train, X_test, y_test, model):
 
+    early_stop = tf.keras.callbacks.EarlyStopping(monitor='val_loss', patience=50, restore_best_weights=True)
+    history = model.fit(X_train, y_train, use_multiprocessing=True, workers = 2, epochs = 1000, validation_data=(X_test, y_test), callbacks=[early_stop])
+    return history, model
+
+
+
+def split_data(X, y, test_size=0.3):
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size = test_size)
+    return X_train, X_test, y_train, y_test
+
+
+
+def retrain_model(X, y):
+
+    config_properties = parse_config_properties()
+
+    time_format = config_properties['time_format']
+
+    current_model = config_properties['name_of_current_model']
+
+    #need to reshape y to [[0,0,0,0,0,0,0,0,0,1], ....]
+    #mapping both ways to encode/decode color values
     id_to_color_mapping = {
         0: 'Grey',
         1: 'Blue',
@@ -64,13 +87,6 @@ def import_data():
     for p in id_to_color_mapping:
         color_to_id_mapping[id_to_color_mapping[p]] = p
 
-    df = pd.read_csv('ml/data/colors.csv')
-    X = df.loc[:,['R','G','B']].values.reshape(-1, 3)
-    y = df['Color'].values
-    #input -> 
-    #   X - > [[R,G,B], ...] -> list of list of values
-    #   y - > [Color, ...] -> list of values
-
     #converting X to numpy array of numpy arrays
     X = np.array([np.array(xi) for xi in X])
 
@@ -83,46 +99,14 @@ def import_data():
     
     y = np.asarray(new_y)
 
-    return X, y
 
+    X_train, X_test, y_train, y_test = split_data(X, y)
 
+    model = read_model(current_model)
 
-def check_current_accuracy(model_name, X, y):
-    model = read_model(model_name)
-    model_accuracy = model.evaluate(X, y)
-    
-    return model_accuracy[1]
+    history, model = train_neural_network(X_train, y_train, X_test, y_test, model)
 
-
-
-def order_retraining():
-    
-    X, y = import_data()
-
-    props = parse_config_properties()
-    curr_model_name = props['name_of_current_model']
-    curr_accuracy = check_current_accuracy(curr_model_name, X, y)
-    new_accuracy, new_model_name = train_new_model(swap_to_new_model = False)
-
-    if new_accuracy > curr_accuracy:
-        change_property('name_of_current_model', new_model_name)
-
-
-
-def relearn(r, g, b, color):
-
-    df = pd.read_csv('ml/data/colors.csv')
-
-    df.loc[len(df.index)] = [r,g,b,color]
-
-    df.to_csv('ml/data/colors.csv', index = False)
-
-    props = parse_config_properties()
-
-    dp_threshold = int(props['new_dp_treshold_to_retrain'])
-
-    if (len(df.index) + 1) % dp_threshold == 0:
-
-        Thread(target = order_retraining).start()
-
-    pass
+    timestamp = time.strftime(time_format, time.localtime())
+    model_filename = f'neural_network{timestamp}.pb'
+    model.save(f'ml/model/saved_models/{model_filename}')
+    change_property('name_of_current_model', model_filename)
