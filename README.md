@@ -22,13 +22,46 @@ The fulfilment of these functionalities will take place through a web page, whic
 
 ## Usage
 
-Requirements: `Docker desktop` installed.
+Requirements: `Docker` installed.
 
 The easiest way to run the application is with Docker:
 
 ```bash
-docker run -p 8098:8098 color_classification
+docker run michalnowi/color_classify:0.0.1
 ```
+
+This will create a container locally from our project docker image available on docker hub.
+
+After you created the container it will automatically start. All changes will be saved to this container.
+
+If you want to create another container, you can run previous command again.
+
+To run the previous container, you need to first find it:
+
+```bash
+docker container ls -a
+```
+
+Then copy its id, and start it with:
+
+```bash
+docker container start -ai <container_id>
+```
+
+While the container is running, you can enter its bash terminal with:
+
+```bash
+docker exec -it <container_id> /bin/sh
+```
+
+It is a good idea to download vim to the container with:
+
+```bash
+apt-get update
+apt-get install vim
+```
+
+With vim you can access `ml/configuration.properties` and change properties during runtime of the service.
 
 ## Manual installation
 
