@@ -9,7 +9,7 @@
 #docker container ls -a - wylistuje wszystkie kontenery
 #docker container start -ai <container_id>  - uruchomi wcześniej utworzony kontener
 
-#docker exec -it <RTS> /bin/sh - cli w dockerze
+#docker exec -it <RTS> /bin/sh - cli w kontenerze
 
 #docker system prune -a - usuwanie z dysku 
 #  - all stopped containers
