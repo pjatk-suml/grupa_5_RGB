@@ -1,10 +1,13 @@
 #docker build -t image_name . -> budowanie image'u
-#docker run -p 8098:8098 image_name -> uruchom kontener z danym widokiem
+#docker run -p 8098:8098 image_name -> uruchom nowy kontener z danego widoku
     # -i - interactive mode
     # -t - pseudo terminal 
     # -p port_from_outside:port_in_container -> żeby działało wystawienie serwera
 
 #docker ps - działające kontenery
+
+#docker container ls -a - wylistuje wszystkie kontenery
+#docker container start -ai <container_id>  - uruchomi wcześniej utworzony kontener
 
 #docker exec -it <RTS> /bin/sh - cli w dockerze
 
